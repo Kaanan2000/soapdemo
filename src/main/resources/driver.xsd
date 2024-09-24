@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://soap.example.com"
+           targetNamespace="http://soap.example.com" elementFormDefault="qualified">
+
+    <!-- GetDriversByLocation Request -->
+    <xs:element name="getDriversByLocationRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="location" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- GetDriversByLocation Response -->
+    <xs:element name="getDriversByLocationResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="driver" type="tns:driversList"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Driver List Type -->
+    <xs:complexType name="driversList">
+        <xs:sequence>
+            <xs:element name="driverDto" type="tns:driver" maxOccurs="unbounded" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Driver Info Type -->
+    <xs:complexType name="driver">
+        <xs:sequence>
+            <xs:element name="driverName" type="xs:string"/>
+            <xs:element name="driverEmail" type="xs:string"/>
+            <xs:element name="driverLocation" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
