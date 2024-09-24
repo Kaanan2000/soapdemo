@@ -25,12 +25,12 @@ public class DriverService {
 
     public GetDriversByLocationResponse getDriversByLocation(String location) {
         try {
-            // Create the request object
-            DriverRequest request = new DriverRequest();
-            request.setLocation(location);
-
-            // Convert the Java object to JSON
-            String jsonRequest = objectMapper.writeValueAsString(request);
+//            // Create the request object
+//            DriverRequest request = new DriverRequest();
+//            request.setLocation(location);
+//
+//            // Convert the Java object to JSON
+//            String jsonRequest = objectMapper.writeValueAsString(request);
 
             String jsonResponse = webClient.get()
                     .uri("/api/v1/location?location={location}", location)
@@ -41,23 +41,21 @@ public class DriverService {
             // Convert JSON response to a List<DriverDto>
             List<DriverDto> driverDtos = objectMapper.readValue(jsonResponse, new TypeReference<List<DriverDto>>() {});
 
-            // Wrap the List in DriversList
+
             DriversList driversList = new DriversList();
             for (DriverDto driverDto : driverDtos) {
-                // Create a new SOAP Driver object for each DTO
+
                 Driver soapDriver = new Driver();
                 soapDriver.setDriverName(driverDto.getDriverName());
                 soapDriver.setDriverEmail(driverDto.getDriverEmail());
                 soapDriver.setDriverLocation(driverDto.getDriverLocation());
 
-                // Add the SOAP Driver to the DriversList
                 driversList.getDriver().add(soapDriver);
             }
 
-            // Create SOAP response
             GetDriversByLocationResponse soapResponse = new GetDriversByLocationResponse();
             soapResponse.setDrivers(driversList);
-            soapResponse.setMessage("Success"); // Set a message or get from driverResponse if applicable
+            soapResponse.setMessage("Success");
 
             return soapResponse;
         } catch (Exception e) {

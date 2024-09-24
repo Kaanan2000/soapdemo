@@ -22,13 +22,8 @@ public class DriverEndpoint {
     @PayloadRoot(namespace = NAMESPACE_URI, localPart = "getDriversByLocationRequest")
     @ResponsePayload
     public GetDriversByLocationResponse getDriversByLocation(@RequestPayload GetDriversByLocationRequest request) {
-        // Convert XML (SOAP) Request to Java Object
         String location = request.getLocation();
-
-        // Call the service to process the request and get the response
         GetDriversByLocationResponse response = driverService.getDriversByLocation(location);
-
-        // Return the final XML response
         return response;
     }
 
