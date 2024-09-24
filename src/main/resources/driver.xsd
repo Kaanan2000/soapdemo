@@ -24,7 +24,7 @@
     <!-- Driver List Type -->
     <xs:complexType name="driversList">
         <xs:sequence>
-            <xs:element name="driverDto" type="tns:driver" maxOccurs="unbounded" minOccurs="0"/>
+            <xs:element name="driver" type="tns:driver" maxOccurs="unbounded" minOccurs="0"/>
         </xs:sequence>
     </xs:complexType>
 
